@@ -1,0 +1,63 @@
+<div class="col-md-10 text-center">
+  <h3>Mantenedor usuarios</h3>
+  <hr>
+</div>
+
+<div class="row text-right">
+  <div class="col-md-10">
+    <button (click)="addNewUser()" class="btn btn-outline-primary" placement="left" ngbTooltip="Agregar nuevo usuario"><i
+        class="fas fa-user-plus"></i></button>
+  </div>
+</div>
+
+<div class="users-table col-md-10 animated fadeIn fast">
+  <table class="table table-striped margin-5">
+    <thead class="thead-dark">
+      <tr>
+        <th class="text-center" scope="col">#</th>
+        <th class="text-center" scope="col">Nombre</th>
+        <th class="text-center" scope="col">Apellido</th>
+        <th class="text-center" scope="col">Email</th>
+        <th class="text-center" scope="col">Dirección</th>
+        <th class="text-center" scope="col">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let k of users | keys; let i = index">
+        <th>{{i+1}}</th>
+        <td>{{users[k].name}}</td>
+        <td>{{users[k].surname}}</td>
+        <td>{{users[k].email}}</td>
+        <td>{{users[k].address}}</td>
+        <td class="text-center">
+          <a class="btn btn-outline-primary btn-sm margin-bottom" (click)="getUser(k)" placement="top" ngbTooltip="Ver"><i
+              class="far fa-eye"></i></a>
+          <a class="btn btn-outline-danger btn-sm margin-bottom" (click)="openModalDelete(addUserModal, k)" placement="top" ngbTooltip="Eliminar"><i
+              class="far fa-trash-alt"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-loading *ngIf="loadingList"></app-loading>
+
+<div *ngIf="!loadingList && users === null" class="col-md-10 text-center alert alert-info" role="alert">
+  No hay registros...
+</div>
+
+<!-- Modal -->
+<ng-template #addUserModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Eliminar</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    ¿Esta seguro que quiere eliminar el registro?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger btn-sm" (click)="modal.close('Save click')">Eliminar</button>
+  </div>
+</ng-template>
