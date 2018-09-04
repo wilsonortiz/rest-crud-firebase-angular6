@@ -38,15 +38,16 @@
       </div>
 
       <div class="modal-footer">
-        <button [disabled]="newUserForm.invalid" type="button" (click)="saveUser(newUserForm);modal.close()" class="btn btn-outline-primary"><i
-            [ngClass]="{'far fa-save':saving, 'fas fa-spinner fa-spin':!saving}"></i>
-          Guardar cambios
-        </button>
+        <div class="col-sm-9 text-right">
+          <button [disabled]="newUserForm.invalid" type="button" (click)="modal.close()" class="btn btn-primary"><i [ngClass]="{'far fa-save':saving, 'fas fa-spinner fa-spin':!saving}"></i>
+            Guardar cambios
+          </button>
+        </div>
       </div>
 
     </form>
   </div>
 </ng-template>
 
-<button (click)="openUserModal(content)" class="btn btn-outline-primary btn-sm margin-bottom" placement="left" ngbTooltip="Agregar nuevo usuario"><i
+<button (click)="openUserModal(content)" class="btn btn-primary btn-sm margin-bottom" placement="left" ngbTooltip="Agregar nuevo usuario"><i
     class="fas fa-user-plus"></i></button>

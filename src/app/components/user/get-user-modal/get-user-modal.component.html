@@ -11,8 +11,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-12 text-right">
-                        <a class="btn btn-outline-danger btn-sm" (click)="edit()" placement="left" ngbTooltip="Editar"><i
-                                class="fas fa-pencil-alt"></i></a>
+                        <a class="btn btn-danger btn-sm" (click)="edit()" placement="left" ngbTooltip="Editar"><i class="fas fa-pencil-alt"></i></a>
                     </div>
                 </div>
 
@@ -49,8 +48,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <div class="col-sm-12 text-center">
-                        <button *ngIf="update" type="button" (click)="modal.close()" class="btn btn-outline-primary">Actualizar</button>
+                    <div class="col-sm-12 text-right">
+                        <button *ngIf="update" type="button" (click)="modal.close()" class="btn btn-primary">Actualizar</button>
                     </div>
                 </div>
 
@@ -61,5 +60,5 @@
 
 </ng-template>
 
-<button (click)="openUserModal(content)" class="btn btn-outline-primary btn-sm margin-bottom" placement="top" ngbTooltip="Ver"><i
+<button (click)="openUserModal(content)" class="btn btn-primary btn-sm margin-bottom" placement="top" ngbTooltip="Ver"><i
         class="far fa-eye"></i></button>

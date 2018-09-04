@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 import { UsersComponent } from '../../users/users.component';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-user-modal',
@@ -13,7 +12,6 @@ import { NgForm } from '@angular/forms';
 export class AddUserModalComponent implements OnInit {
   user: User;
   saving: boolean = true;
-  closeResult: string;
 
   constructor(private modalService: NgbModal, public activeModal: NgbActiveModal, private userService: UserService, private router: Router,
     private usersComponent: UsersComponent) {
@@ -41,9 +39,7 @@ export class AddUserModalComponent implements OnInit {
 
     let modal = this.modalService.open(content, options);
     modal.result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      console.log(this.closeResult);
-      // this.saveUser();
+      this.saveUser();
 
     }, (reason) => {
       console.log(this.getDismissReason(reason));
