@@ -1,0 +1,65 @@
+<ng-template #content let-modal>
+    <div>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">{{user.name}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="!loading" class="modal-body">
+            <form #getUserForm="ngForm">
+
+                <div class="form-group row">
+                    <div class="col-sm-12 text-right">
+                        <a class="btn btn-outline-danger btn-sm" (click)="edit()" placement="left" ngbTooltip="Editar"><i
+                                class="fas fa-pencil-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2" for="name">Nombre</label>
+                    <div class="input-group col-sm-10">
+                        <input [readonly]="!update" name="name" [(ngModel)]="user.name" type="text" class="form-control" id="name" placeholder="Ingrese su nombre"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2" for="surname">Apellido</label>
+                    <div class="input-group col-sm-10">
+                        <input [readonly]="!update" name="surname" [(ngModel)]="user.surname" type="text" class="form-control" id="surname" placeholder="Ingrese su apellido"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2" for="email">Email</label>
+                    <div class="input-group col-sm-10">
+                        <input [readonly]="!update" name="email" [(ngModel)]="user.email" type="text" class="form-control" id="email" placeholder="Ingrese su email"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2" for="address">Dirección</label>
+                    <div class="input-group col-sm-10">
+                        <input [readonly]="!update" name="address" [(ngModel)]="user.address" type="text" class="form-control" id="address" placeholder="Ingrese su dirección"
+                            required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="col-sm-12 text-center">
+                        <button *ngIf="update" type="button" (click)="modal.close()" class="btn btn-outline-primary">Actualizar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <app-loading *ngIf="loading"></app-loading>
+
+</ng-template>
+
+<button (click)="openUserModal(content)" class="btn btn-outline-primary btn-sm margin-bottom" placement="top" ngbTooltip="Ver"><i
+        class="far fa-eye"></i></button>

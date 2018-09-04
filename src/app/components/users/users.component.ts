@@ -12,33 +12,18 @@ import { NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng
 export class UsersComponent implements OnInit {
 
   users: any = []
-  loadingList: boolean = true;
-  update: boolean;
+  loadingList: boolean;
 
   constructor(private userService: UserService, private router: Router,
     private modalService: NgbModal) {
     this.getUsers();
   }
 
-  ngOnInit() {
-  }
+  getUsers() {
+    this.loadingList = true;
 
-  getUser(id) {
-    this.userService.getUser(id)
-      .subscribe(res => {
-        this.router.navigate(['/user', id])
-      })
-  }
-
-  addNewUser() {
-    this.update = false;
-    this.router.navigate(['/user', 'new']);
-  }
-
-  private getUsers() {
     this.userService.getUsers().subscribe(res => {
       this.users = res;
-      console.log(this.users);
       this.loadingList = false;
     })
   }
@@ -51,7 +36,7 @@ export class UsersComponent implements OnInit {
       windowClass: 'animated fadeIn fast'
     }
 
-    this.modalService.open(deleteUserModal, options).result.then((result) => {
+    this.modalService.open(deleteUserModal, options).result.then(result => {
       this.deleteUser(id);
     }, (reason) => {
       console.log(this.getDismissReason(reason));
@@ -75,5 +60,7 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  ngOnInit() {
+  }
 
 }

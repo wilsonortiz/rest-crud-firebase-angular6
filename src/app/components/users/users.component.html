@@ -5,8 +5,7 @@
 
 <div class="row text-right">
   <div class="col-md-10">
-    <button (click)="addNewUser()" class="btn btn-outline-primary btn-sm margin-bottom" placement="left" ngbTooltip="Agregar nuevo usuario"><i
-        class="fas fa-user-plus"></i></button>
+    <app-add-user-modal></app-add-user-modal>
   </div>
 </div>
 
@@ -30,8 +29,8 @@
         <td>{{users[k].email}}</td>
         <td>{{users[k].address}}</td>
         <td class="text-center">
-          <a class="btn btn-outline-primary btn-sm margin-bottom" (click)="getUser(k)" placement="top" ngbTooltip="Ver"><i
-              class="far fa-eye"></i></a>
+          <app-get-user-modal [id]="k"></app-get-user-modal>
+
           <a class="btn btn-outline-danger btn-sm margin-bottom" (click)="openModalDelete(deleteUserModal, k)" placement="top" ngbTooltip="Eliminar"><i
               class="far fa-trash-alt"></i></a>
         </td>

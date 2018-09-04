@@ -1,0 +1,52 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Nuevo Usuario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #newUserForm="ngForm">
+      <div class="form-group row">
+        <label class="col-sm-2" for="name">Nombre</label>
+        <div class="input-group col-sm-9">
+          <input name="name" [(ngModel)]="user.name" type="text" class="form-control" id="name" placeholder="Ingrese su nombre" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2" for="surname">Apellido</label>
+        <div class="input-group col-sm-9">
+          <input name="surname" [(ngModel)]="user.surname" type="text" class="form-control" id="surname" placeholder="Ingrese su apellido"
+            required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2" for="email">Email</label>
+        <div class="input-group col-sm-9">
+          <input name="email" [(ngModel)]="user.email" type="text" class="form-control" id="email" placeholder="Ingrese su email" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2" for="address">Dirección</label>
+        <div class="input-group col-sm-9">
+          <input name="address" [(ngModel)]="user.address" type="text" class="form-control" id="address" placeholder="Ingrese su dirección"
+            required>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button [disabled]="newUserForm.invalid" type="button" (click)="saveUser(newUserForm);modal.close()" class="btn btn-outline-primary"><i
+            [ngClass]="{'far fa-save':saving, 'fas fa-spinner fa-spin':!saving}"></i>
+          Guardar cambios
+        </button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>
+
+<button (click)="openUserModal(content)" class="btn btn-outline-primary btn-sm margin-bottom" placement="left" ngbTooltip="Agregar nuevo usuario"><i
+    class="fas fa-user-plus"></i></button>
