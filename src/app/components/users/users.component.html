@@ -32,7 +32,7 @@
         <td class="text-center">
           <a class="btn btn-outline-primary btn-sm margin-bottom" (click)="getUser(k)" placement="top" ngbTooltip="Ver"><i
               class="far fa-eye"></i></a>
-          <a class="btn btn-outline-danger btn-sm margin-bottom" (click)="openModalDelete(addUserModal, k)" placement="top" ngbTooltip="Eliminar"><i
+          <a class="btn btn-outline-danger btn-sm margin-bottom" (click)="openModalDelete(deleteUserModal, k)" placement="top" ngbTooltip="Eliminar"><i
               class="far fa-trash-alt"></i></a>
         </td>
       </tr>
@@ -47,7 +47,7 @@
 </div>
 
 <!-- Modal -->
-<ng-template #addUserModal let-modal>
+<ng-template #deleteUserModal let-modal>
   <div class="modal-header">
     <h5 class="modal-title" id="modal-basic-title">Eliminar</h5>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">

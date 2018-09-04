@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
   readonly: boolean;
   title: string;
   saveLoading: boolean = false;
+  getUserLoading: boolean;
 
   constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.user = new User();
@@ -53,11 +54,16 @@ export class UserComponent implements OnInit {
   private getUser(id: string) {
 
     if (!this.getIsNew(id)) {
+      this.getUserLoading = true;
       this.userService.getUser(id).subscribe((res: User) => {
         this.user = res;
+        this.getUserLoading = false;
         this.title = this.user.name
         this.readonly = true;
       })
+    } else {
+      //new User
+      this.getUserLoading = false;
     }
   }
 

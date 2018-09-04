@@ -1,6 +1,6 @@
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,12 +11,12 @@ import { NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng
 })
 export class UsersComponent implements OnInit {
 
-  public users: any = []
+  users: any = []
   loadingList: boolean = true;
   update: boolean;
 
   constructor(private userService: UserService, private router: Router,
-    private activatedRoute: ActivatedRoute, private modalService: NgbModal) {
+    private modalService: NgbModal) {
     this.getUsers();
   }
 
@@ -33,7 +33,6 @@ export class UsersComponent implements OnInit {
   addNewUser() {
     this.update = false;
     this.router.navigate(['/user', 'new']);
-    // this.activatedRoute.paramMap
   }
 
   private getUsers() {
@@ -44,7 +43,7 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  openModalDelete(addUserModal, k) {
+  openModalDelete(deleteUserModal, id: string) {
 
     const options: NgbModalOptions = {
       centered: true,
@@ -52,8 +51,8 @@ export class UsersComponent implements OnInit {
       windowClass: 'animated fadeIn fast'
     }
 
-    this.modalService.open(addUserModal, options).result.then((result) => {
-      this.deleteUser(k);
+    this.modalService.open(deleteUserModal, options).result.then((result) => {
+      this.deleteUser(id);
     }, (reason) => {
       console.log(this.getDismissReason(reason));
     });
